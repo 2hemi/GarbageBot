@@ -20,7 +20,7 @@ func handleline(linelen int, stream string, servername string, irccon *tls.Conn)
 		}
 	}
 
-	if strings.Contains(stream[:linelen], " PRIVMSG Garbage :") {
+	if strings.Contains(stream[:linelen], " PRIVMSG "+mainbot.nick+" :") {
 		sen, _, mes := handleprivmsg(linelen, stream)
 		modulespm(sen, mes, irccon)
 	} else if strings.Contains(stream[:linelen], " PRIVMSG #") {
@@ -30,7 +30,7 @@ func handleline(linelen int, stream string, servername string, irccon *tls.Conn)
 
 }
 
-//Respond to server codes
+//Respond to critical server codes
 func handlecode(code int, stream string, linelen int, irccon *tls.Conn) {
 	switch code {
 	case 001:
