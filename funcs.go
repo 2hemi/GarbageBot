@@ -35,7 +35,7 @@ func handlecode(code int, stream string, linelen int, irccon *tls.Conn) {
 	switch code {
 	case 001:
 		ircraw("VERSION", "Bot", irccon)
-		joinchan(irccon, chanlist)
+		joinchan(chanlist, irccon)
 	case 433:
 		log.Fatal("GarbageBot: it seems that someone is sqatting this nick, change it and reconnect.")
 	}
