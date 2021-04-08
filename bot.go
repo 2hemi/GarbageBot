@@ -1,49 +1,55 @@
 package main
 
-type ircmessage struct{
-	 sender     string
-	 content    string
-	 recipient  string
-}							
-type ircserver  struct{
-	 hostname   string
-	 port       string
-	 channels []ircchan
+type ircmessage struct {
+	sender    string
+	content   string
+	recipient string
 }
-type ircchan    struct{
-	 name       string
-	 users    []ircuser	
-}               
-type ircbotid   struct{
-	 user	    string
-	 nick 	    string
-	 rname      string
+type ircserver struct {
+	hostname string
+	port     string
+	channels []ircchan
 }
-  
-type ircuser    struct{
-	 nick 	   	string
-	 rname      string
-	 prefix		byte
+type ircchan struct {
+	name  string
+	users []ircuser
+}
+type ircbotid struct {
+	user  string
+	nick  string
+	rname string
 }
 
-var (chanlist  	[]ircchan	  
-	exserver	ircserver
-	exbot		ircbotid
-	servername	string)
-
-func main(){
-
-	chanlist = append(chanlist, ircchan{name:"#ex1"})
-	chanlist = append(chanlist, ircchan{name:"#ex2"})
-	exserver    :=ircserver{
-				  hostname:"irc.rizon.net",
-				  port:    "6697",
-				  channels:chanlist} 
-	exbot		:=ircbotid{
-				  user: "Garbage",
-				  nick: "Garbage",
-				  rname:"Garbage"}
-	maincon,servername :=ircconnect(exserver.hostname,exserver.port, exserver.channels, exbot.user+" "+exbot.user+" "+exbot.user+" "+exbot.rname,exbot.nick)
-	ircmaintain(maincon,exserver.channels,servername)
+type ircuser struct {
+	nick   string
+	rname  string
+	prefix byte
 }
 
+var (
+	chanlist   []ircchan
+	exserver   ircserver
+	mainbot    ircbotid
+	servername string
+
+	prefix = "."
+)
+
+func main() {
+
+	mainbot = ircbotid{
+		user:  "Garbage",
+		nick:  "Garbage",
+		rname: "Garbage"}
+
+	chanlist = append(chanlist, ircchan{name: "#ex1"})
+	chanlist = append(chanlist, ircchan{name: "#ex2"})
+
+	exserver := ircserver{
+		hostname: "irc.rizon.net",
+		port:     "6697",
+		channels: chanlist}
+
+	maincon, servername := ircconnect(exserver.hostname, exserver.port, exserver.channels, mainbot.user+" "+mainbot.user+" "+mainbot.user+" "+mainbot.rname, mainbot.nick)
+	ircmaintain(exserver.channels, servername, maincon)
+}
