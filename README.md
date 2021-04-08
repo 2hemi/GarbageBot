@@ -7,7 +7,7 @@ This bot is meant to slim (<200LOC), easy to read and use all while having the n
 ### How it works
 This bot reads a line and scans it for triggers, your custom modules execute on each trigger, keeping PMs and channel messages separate, then it goes for the next line.
 
-Create your module.go and drop it in the modules directory, add your function() or functionpm() in modules.go, your trigger must be written inside those functions.
+Create your module.go and drop it in the directory, add your function() or functionpm() in modules.go, your trigger must be written inside those functions.
 
 for examples, look at report.go.
 
