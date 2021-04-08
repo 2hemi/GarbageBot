@@ -109,7 +109,7 @@ func ircraw(command string, params string, conn *tls.Conn) {
 }
 
 //Join channel
-func joinchan(irccon *tls.Conn, chanlist []ircchan) {
+func joinchan(chanlist []ircchan, irccon *tls.Conn,) {
 	for i := 0; i < len(chanlist); i++ {
 		ircraw("JOIN", chanlist[i].name, irccon)
 		log.Println("GarbageBot: I'm in " + chanlist[i].name)
