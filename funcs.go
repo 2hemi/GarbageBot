@@ -50,6 +50,8 @@ func ircconnect(server string, port string, chanlist []ircchan, user string, nic
 	if err != nil {
 		log.Fatalln(err)
 	}
+	log.Print("GarbageBot: Initializing Modules.")
+	initmodules(irccon)
 
 	linelen, err := irccon.Read(stream)
 	if err != nil {
