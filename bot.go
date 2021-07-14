@@ -38,15 +38,15 @@ var (
 func main() {
 
 	mainbot = ircbotid{
-		user:  "Garbage",
-		nick:  "Garbage",
-		rname: "Garbage"}
+		user:  "GarbageGPT",
+		nick:  "GarbageGPT",
+		rname: "GarbageGPT"}
 
 	chanlist = append(chanlist, ircchan{name: "#ex1"})
 	chanlist = append(chanlist, ircchan{name: "#ex2"})
 
 	exserver := ircserver{
-		hostname: "irc.rizon.net",
+		hostname: "irc.changeme.net",
 		port:     "6697",
 		channels: chanlist}
 
